@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book';
+import PropTypes from 'prop-types';
 
 class BooksTable extends Component {
 	render() {
@@ -15,7 +16,7 @@ class BooksTable extends Component {
 					</tr>
 				</thead>
 				<tbody id="book-list">
-					{books.length ? (
+					{books ? (
 						books.map((book) => (
 							<Book
 								deleteBook={this.props.deleteBook}
@@ -31,5 +32,8 @@ class BooksTable extends Component {
 		);
 	}
 }
+BooksTable.propTypes = {
+	books: PropTypes.array.isRequired,
+};
 
 export default BooksTable;

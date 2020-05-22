@@ -7,37 +7,38 @@ import './App.css';
 
 class App extends Component {
 	state = {
-		books: [
-			{
-				title: 'Book 1',
-				author: 'Author 1',
-				isbn: '94920482',
-				id: uuid(),
-			},
-			{
-				title: 'Book 2',
-				author: 'Author 2',
-				isbn: '94920482',
-				id: uuid(),
-			},
-			{
-				title: 'Book 3',
-				author: 'Author 3',
-				isbn: '94920482',
-				id: uuid(),
-			},
-		],
+		books: [],
+	};
+
+	componentDidMount() {
+		const books = this.getBooks();
+		this.setState({
+			books,
+		});
+	}
+
+	getBooks = () => {
+		let books;
+		if (localStorage.getItem('books') === null) {
+			books = [];
+		} else {
+			books = JSON.parse(localStorage.getItem('books'));
+		}
+		return books;
 	};
 
 	addBook = (book) => {
 		book.id = uuid();
+		let books = [book, ...this.getBooks()];
+		localStorage.setItem('books', JSON.stringify(books));
 		this.setState({
-			books: [...this.state.books, book],
+			books,
 		});
 	};
 
 	deleteBook = (id) => {
-		const books = [...this.state.books.filter((book) => book.id !== id)];
+		let books = [...this.getBooks().filter((book) => book.id !== id)];
+		localStorage.setItem('books', JSON.stringify(books));
 		this.setState({
 			books,
 		});

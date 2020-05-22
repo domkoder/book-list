@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Book = (props) => {
 	const { title, author, isbn, id } = props.book;
@@ -21,4 +22,7 @@ const Book = (props) => {
 	);
 };
 
+Book.propTypes = {
+	book: PropTypes.object.isRequired,
+};
 export default Book;
