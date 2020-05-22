@@ -30,9 +30,16 @@ class App extends Component {
 	};
 
 	addBook = (book) => {
-		console.log(book);
+		book.id = uuid();
 		this.setState({
-			books: book,
+			books: [...this.state.books, book],
+		});
+	};
+
+	deleteBook = (id) => {
+		const books = [...this.state.books.filter((book) => book.id !== id)];
+		this.setState({
+			books,
 		});
 	};
 
@@ -40,7 +47,7 @@ class App extends Component {
 		return (
 			<div className="container">
 				<AddBook addBook={this.addBook} />
-				<BooksTable books={this.state.books} />
+				<BooksTable books={this.state.books} deleteBook={this.deleteBook} />
 			</div>
 		);
 	}

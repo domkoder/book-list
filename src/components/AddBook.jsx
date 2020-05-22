@@ -9,12 +9,20 @@ class AddBook extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-		this.props.addBook(this.state);
-		this.setState({
-			title: '',
-			author: '',
-			isbn: '',
-		});
+		if (
+			this.state.title === '' ||
+			this.state.author === '' ||
+			this.state.isbn === ''
+		) {
+			alert('please fill in all the fields');
+		} else {
+			this.props.addBook(this.state);
+			this.setState({
+				title: '',
+				author: '',
+				isbn: '',
+			});
+		}
 	};
 
 	onChange = (e) => this.setState({ [e.target.name]: e.target.value });

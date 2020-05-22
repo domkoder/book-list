@@ -1,18 +1,33 @@
-a {
+button {
 	text-decoration: none;
+	color: red;
+	border: none;
+	padding: 0.5rem;
+	margin: 0;
+	outline: none;
+}
+button:active {
+	font-size: 1rem;
 	color: red;
 }
 .success,
 .error {
 	color: white;
 	padding: 5px;
-	margin: 5px 0 15px 0;
+	margin: 1rem auto;
+	max-width: 600px;
+	border-radius: 5px;
+	text-align: center;
 }
 
 .success {
-	background: green;
+	color: green;
+	border: 1px solid green;
+	background-color: rgb(179, 241, 179);
 }
 
 .error {
-	background: red;
+	color: red;
+	/* border: 1px solid red; */
+	background-color: rgb(255, 211, 211);
 }

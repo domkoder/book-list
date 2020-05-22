@@ -1,16 +1,21 @@
 import React from 'react';
 
 const Book = (props) => {
-	const { title, author, isbn } = props.book;
+	const { title, author, isbn, id } = props.book;
+
 	return (
 		<tr>
 			<td>{title}</td>
 			<td>{author}</td>
 			<td>{isbn}</td>
 			<td>
-				<a href="#" className="delete">
+				<button
+					href="/#"
+					className="delete"
+					onClick={props.deleteBook.bind(this, id)}
+				>
 					X
-				</a>
+				</button>
 			</td>
 		</tr>
 	);
